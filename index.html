@@ -34,24 +34,174 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,400;0,700;1,400&amp;display=swap" rel="stylesheet"> -->
 
     <link href="https://www.caldic.com/includes/svg/svg.svg">
     <link rel="icon" type="image/png" href="https://www.caldic.com/includes/img/favicon.png">
 
         <!-- Google Analytics -->
 <!-- Google tag (gtag.js) -->
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-71FT00P43B&amp;l=dataLayer&amp;cx=c"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-P7KNNM"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73532246-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    
+    
+<link rel="stylesheet" type="text/css" href="chrome-extension://mklbhckkgddhlcdagmobdmnadpjokkkn/TopFrame.css"><link rel="stylesheet" type="text/css" href="chrome-extension://mklbhckkgddhlcdagmobdmnadpjokkkn/AllFrames.css">
 
-  gtag('config', 'UA-73532246-1');
-</script>        <!-- End Google Analytics -->
+
+
+
+
+
+
     
+<script type="text/javascript" src="https://demo.tableau.com/javascripts/api/tableau-2.9.1.min.js"></script>
+
+<script type="text/javascript">
+
+    window.addEventListener("load", mediaSizer);
+ 
+
+    var vizList = [
+
+        "https://demo.tableau.com/t/LuizOliveira/views/resultado_16800399868770/AcompanhamentodeResultado",
+        "https://demo.tableau.com/t/LuizOliveira/views/HUMANRESOURCES-HRExpensesDashboardBrasil_16800399868760/Cockpit",
+        "https://demo.tableau.com/t/LuizOliveira/views/FinanasCorporativas-PainelDemonstrativoFinanceiro_16800399883680/Cockpit-Finance",
+        "https://demo.tableau.com/t/LuizOliveira/views/PrevistoxRealizado_16800399866240/AnliseMensal/2031b4cb-0dc6-4acc-8931-83068da3b9f4/e46ae394-bf76-4c79-82db-58d3c6c7c8e1",
+        "https://public.tableau.com/views/Howhastheworldchangedsince1962/WorldIndicators?:language=en-US&:display_count=n&:origin=viz_share_link",
+        "https://demo.tableau.com/t/LuizOliveira/views/PROCUREMENT-ContractManagementDashboard_16790725723870/Home",
+        "https://public.tableau.com/views/SalesDashboardautomaticallycreated_0/Home?:language=en-US&:toolbar=n&:display_count=n&:origin=viz_share_link",
+        "https://public.tableau.com/views/GoogleAdsDashboard/Home?:language=en-US&:toolbar=n&:display_count=n&:origin=viz_share_link",
+        "https://public.tableau.com/views/SALESCLOUD-SalesPipelineExpert/Home?:language=en-US&:display_count=n&:origin=viz_share_link",
+        "https://public.tableau.com/views/NPS-NetPromoterScoreDashboard/Home?:language=en-US&:display_count=n&:origin=viz_share_link",
+        "https://demo.tableau.com/t/LuizOliveira/views/1-XX-DesigningEffectiveDashboards_16609286511730/Intro"
+        
+    ];
+    // Array of Tableau Server URLs for dashboard or sheet navigation.
+
+    var viz,
+        vizLen = vizList.length,
+        vizCount = 0,
+        devType,
+        vHideTabs = true,
+        vHeight = 800;
+            vWidth = 415;
+            vHideToolbar = true;
+    var options = {
+        device: devType,
+    };
+
+
+    function mediaSizer() {
+        // Determines the correct viz layout according to screen sizes.
+        if (window.matchMedia("(max-width: 480px)").matches) {
+            //alert("I am a phone layout!");
+            devType = 'phone';
+            vWidth = 415;
+            vHeight = 2000;
+            //options.device = 'phone';
+        } else if (window.matchMedia("(max-width: 980px)").matches) {
+            //alert("I am a tablet layout!");
+            devType = 'tablet';
+            vWidth = 980;
+            //options.device = 'tablet';
+        } else {
+            //alert("I am a desktop layout!");
+            devType = 'desktop';
+            vWidth = 1666;
+            vHeight = 900;
+            //options.device = 'desktop';
+        }
+        console.log("devtype: " + devType)
+        console.log("launch0")
+        launchViz(0);
+
+        launchViz(1);
+        launchViz(2);
+        launchViz(3);
+
+
+        vHideTabs= false;
+        console.log("launch1")
+        if (devType === 'desktop')  {
+            vHeight = 900;}
+            else if (devType === 'phone')
+            {vHeight = 1500;}
+            else {vHeight = 1600;}    
+         launchViz(4);
+         console.log("launch2")
+         if (devType === 'desktop')  {
+            vHeight = 900;}
+            else if (devType === 'phone')
+            {vHeight = 3450;}
+            else {vHeight = 1600;}   
+        // launchViz(5);
+         launchViz(6);
+         launchViz(7);
+        launchViz(8);
+        launchViz(9);
+        launchViz(10);
+
+        // launchViz(8);
+        // launchViz(9);
+
+
+
+
+        // Launches the viz again with the new sizing at the current index of vizList.
+    }
+
+
+    function launchViz(vizNav) {
+        // JS object targeting a div in the html document. (vizNav) will pass navigation values to move back and forth across vizList.
+        console.log("vizContainer" + vizNav)
+        console.log("devtype: " + devType)
+        var vizDiv = document.getElementById("vizContainer" + vizNav),
+            // Will embed the visualization on a div with id="VizContainer"
+            options = {
+                device: devType,
+                width: vWidth,
+                height: vHeight,
+                hideTabs: vHideTabs,
+                hideToolbar: vHideToolbar,
+                onFirstInteractive: function () {
+                    listenToMarksSelection();
+                }
+            };
+
+
+        var vizURL = vizList[vizNav];
+        // Dynamic URL returning the string from vizList at index = vizNav (viz to be displayed).
+
+        try {
+            // Initializes the viz from the array with desired options. 
+            viz = new tableau.Viz(vizDiv, vizURL, options);
+            if (!viz) throw 'viz not initialized'
+        }
+        catch (err) {
+            alert(err);
+        }
+        finally {
+            console.log('whatever')
+            console.count('initViz')
+        }
+
+    }
+
+</script>
+
+
+
+<style>
+    * {
+      letter-spacing: 0;
+    }
     
-<link rel="stylesheet" type="text/css" href="chrome-extension://mklbhckkgddhlcdagmobdmnadpjokkkn/TopFrame.css"><link rel="stylesheet" type="text/css" href="chrome-extension://mklbhckkgddhlcdagmobdmnadpjokkkn/AllFrames.css"></head>
+    </style>
+
+
+
+
+
+
+</head>
 
 <body>
     
@@ -550,6 +700,99 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
     </section>
+
+
+
+    
+
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+            <p>-</p>
+            <p style="font-size:x-small; font-style: normal;font-stretch: normal; letter-spacing: 1;"> O objetivo dos dashboards embeddados abaixo é que você possa se inspirar com as possibilidades que a criação de cultura de dados pode trazer para sua empresa, clientes e parceiros. Este é um exemplo que demonstra um dashboard seguindo o look and feel da sua empresa</p>
+            <p>-</p>
+            <div id="vizContainer0"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+
+            <p>-</p>
+            <p> Esse Cockpit de despesas abaixo faz parte de nossos aceleradores que podem ajudar em diversas áreas de sua empresa e vale a pena conferir quais podem ajuda-los a atingir resultados mais rápidos.</p>
+            <p>-</p>
+            <div id="vizContainer1"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+            <p>-</p>
+            <p> Outro exemplo de acelerador de finanças</p>
+            <p>-</p>
+            <div id="vizContainer2"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+            <p>-</p>
+            <p>Este é um exemplo de acompanhamentos de centro de custo e lucro avaliando previsto e realizado</p>
+            <p>-</p>
+            <div id="vizContainer3"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+            <p>-</p>
+            <p> Exemplo de dashboard com animação. Clique no botao de play na forma de um triangulo no canto inferior
+                direito para ver a animação. Disponível no Tableau Public </p>
+                <p>-</p>
+            <div id="vizContainer4"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div style="display: inline-block;">
+            <p>-</p>
+            <p> O dashboard a seguir  é um exemplo de acelerador para vendas</p>
+            <p>-</p>
+            <div id="vizContainer6"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+      <div style="display: inline-block;">
+        <p>-</p>
+        <p> O dashboard a seguir  é um exemplo de acelerador para Google ads</p>
+            <p>-</p>
+          <div id="vizContainer7"></div>
+      </div>
+    </div>
+    <div style="text-align: center;">
+    <div style="display: inline-block;">
+        <p>-</p>
+        <p> O dashboard a seguir  é um exemplo de acelerador para Pipeline</p>
+            <p>-</p>
+        <div id="vizContainer8"></div>
+    </div>
+    </div>
+    <div style="text-align: center;">
+    <div style="display: inline-block;">
+        <p>-</p>
+        <p> O dashboard a seguir  é um exemplo de acelerador para Pesquisa NPS</p>
+            <p>-</p>
+      <div id="vizContainer9"></div>
+    </div>
+    </div>
+
+
+    <div style="text-align: center;">
+    <div style="display: inline-block;">
+        <p>-</p>
+        <p> O dashboard a seguir é um exemplo de webinar que utilizamos no inicio da jornada para criação de cultura de dados. </p>
+            <p>Tem muita informação relevante para que voce possa conhecer um pouco mais sobre a plataforma Tableau e como te ajudamos a construir cultura de dados/>
+            <p>-</p>
+    <div id="vizContainer10"></div>
+    </div>
+    </div>
+
+
+
 
 
 <section class="" id="">
@@ -1093,12 +1336,12 @@ Sustainability has long been embedded in our organization. Since our foundation 
 <script src="https://www.caldic.com/includes/scripts/vendor.js?v=1.0.8423.20397"></script>
 <script src="https://www.caldic.com/includes/scripts/main.js?v=1.0.8423.20397"></script>
 
-<script type="text/javascript" id="">(function () {
+<!-- <script type="text/javascript" id="">(function () {
         function c(d, f, g) { try { var e = window.performance.getEntriesByType("resource"), a; for (a = 0; a < e.length; ++a) { var b = e[a]; if (d.test(b.name)) { b.duration && dataLayer.push({ event: "gaTiming", timingCategory: f, timingVariable: "duration", timingTime: b.duration + .5 | 0, timingLabel: g }); break } } } catch (h) { } } if (!(new RegExp(location.origin)).test(document.referrer) && window.performance && 0 === window.performance.navigation.type) {
             try { document.fonts.ready.then(function () { c(/fast.fonts.net\/cssapi\/.+.css/, "Fonts.net (CSS)") }) } catch (d) { } c(/www.google-analytics.com\/analytics.js/,
                 "Google Analytics (analytics.js)")
         }
-    })();</script>
+    })();</script> -->
 </body><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     style="position: absolute; width: 0; height: 0" aria-hidden="true" id="__GURU_SVG_SPRITE_NODE__" role="hidden">
     <symbol viewBox="0 0 100 22" id="ghq-svg-guru-logo">
